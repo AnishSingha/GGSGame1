@@ -13,7 +13,7 @@ public class CloudAuthentication : MonoBehaviour
     async void Start()
     {
         await UnityServices.InitializeAsync();
-        SignIn();
+        //SignIn();
     }
 
 
