@@ -7,13 +7,13 @@ public class Launcher : MonoBehaviour
 {
    
     private Move move;
-    private Rigidbody rb;
+    private Rigidbody2D rb;
     public Transform launchPoint;
 
     private void Awake()
     {
         move = FindAnyObjectByType<Move>();
-        rb = FindAnyObjectByType<Rigidbody>();
+        rb = FindAnyObjectByType<Rigidbody2D>();
         
     }
     private void OnMouseClick()
@@ -22,11 +22,11 @@ public class Launcher : MonoBehaviour
         {
             
             move.enabled = true;
-            rb.useGravity = true;
+            rb.gravityScale = 1;
             this.enabled = false;
             
 
-        }
+        }   
     }
 
     void Update()
@@ -39,11 +39,13 @@ public class Launcher : MonoBehaviour
     public void LookAtMousePosition()
     {
         Vector3 mousePosition = Input.mousePosition;
+        mousePosition = Camera.main.ScreenToWorldPoint(mousePosition);
 
-        // Convert the mouse position to world coordinates
-        Vector3 mouseWorldPosition = Camera.main.ScreenToWorldPoint(new Vector3(mousePosition.x, mousePosition.y, transform.position.y));
+        Vector2 direction = new Vector2(
+            mousePosition.x - transform.position.x,
+            mousePosition.y - transform.position.y
+        );
 
-        Vector3 forwardDirection = mouseWorldPosition - new Vector3(transform.position.x, transform.position.y, mouseWorldPosition.z);
-        transform.rotation = Quaternion.LookRotation(forwardDirection, Vector3.forward);
+        transform.up = direction;
     }
 }

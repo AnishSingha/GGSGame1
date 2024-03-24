@@ -10,7 +10,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 828877653838510044, guid: 0fef3009a27d6294f8c1f732fb51efe5, type: 3}
       propertyPath: m_Name
-      value: Endpoint
+      value: EndpointMovingUpnDown
       objectReference: {fileID: 0}
     - target: {fileID: 8905603921787557090, guid: 0fef3009a27d6294f8c1f732fb51efe5, type: 3}
       propertyPath: m_LocalPosition.x
@@ -55,5 +55,31 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 828877653838510044, guid: 0fef3009a27d6294f8c1f732fb51efe5, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 4799692628371776451}
   m_SourcePrefab: {fileID: 100100000, guid: 0fef3009a27d6294f8c1f732fb51efe5, type: 3}
+--- !u!1 &1310320646350863324 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 828877653838510044, guid: 0fef3009a27d6294f8c1f732fb51efe5, type: 3}
+  m_PrefabInstance: {fileID: 1850964581377625088}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &4799692628371776451
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1310320646350863324}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 652ed6bec6e9bfa4aad55cf3960aee8c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  splineContainer: {fileID: 0}
+  speed: 0.1
+  loop: 1
+  t: 0
+  ResetMoves: 0
+  MovesBack: 0

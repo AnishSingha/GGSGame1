@@ -5,7 +5,7 @@ using UnityEngine;
 public class BoostUp : MonoBehaviour
 {
     private bool isColliding;
-    public Rigidbody body;
+    public Rigidbody2D body;
     [SerializeField]protected float force;
     [SerializeField] float DelayBetweenForceShift;
     [SerializeField] bool willSwap;
@@ -39,12 +39,12 @@ public class BoostUp : MonoBehaviour
         }
     }
 
-    private void OnTriggerEnter(Collider other)
+    private void OnTriggerEnter2D(Collider2D other)
     {
         StartPush(other);
     }
 
-    private void StartPush(Collider other)
+    private void StartPush(Collider2D other)
     {
         if (other.CompareTag("Player"))
         {
@@ -53,12 +53,12 @@ public class BoostUp : MonoBehaviour
         }
     }
 
-    private void OnTriggerExit(Collider other)
+    private void OnTriggerExit2D(Collider2D other)
     {
         StopPush(other);
     }
 
-    private void StopPush(Collider other)
+    private void StopPush(Collider2D other)
     {
         if (other.CompareTag("Player"))
         {

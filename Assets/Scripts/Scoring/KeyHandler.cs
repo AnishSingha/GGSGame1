@@ -5,7 +5,7 @@ public class KeyHandler : MonoBehaviour
 {
 
 
-    void OnTriggerEnter(Collider other)
+    void OnTriggerEnter2D(Collider2D other)
     {
         // Check if the player collected the key
         if (other.gameObject.tag == "Player")

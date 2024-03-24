@@ -16,6 +16,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: ForceFieldDownwards
       objectReference: {fileID: 0}
+    - target: {fileID: 3299068552732996844, guid: ae3238df45b257446b0178075cca11d7, type: 3}
+      propertyPath: m_Color.b
+      value: 0.92387825
+      objectReference: {fileID: 0}
+    - target: {fileID: 3299068552732996844, guid: ae3238df45b257446b0178075cca11d7, type: 3}
+      propertyPath: m_Color.g
+      value: 0.514151
+      objectReference: {fileID: 0}
+    - target: {fileID: 3299068552732996844, guid: ae3238df45b257446b0178075cca11d7, type: 3}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6457534460371825061, guid: ae3238df45b257446b0178075cca11d7, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
