@@ -1310,7 +1310,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8116707106810504361, guid: ae3238df45b257446b0178075cca11d7, type: 3}
       propertyPath: willSwap
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8116707106810504361, guid: ae3238df45b257446b0178075cca11d7, type: 3}
       propertyPath: isColliding
@@ -1322,7 +1322,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8116707106810504361, guid: ae3238df45b257446b0178075cca11d7, type: 3}
       propertyPath: DelayBetweenForceShift
-      value: 2
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
