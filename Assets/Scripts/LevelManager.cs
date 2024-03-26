@@ -4,7 +4,8 @@ using UnityEngine.SceneManagement;
 
 public class LevelManager : MonoBehaviour
 {
-    public static int highestLevelUnlocked = 1;
+   
+    public static int highestLevelUnlocked = 50;
 
     public static void LevelCompleted(int level)
     {
@@ -55,6 +56,6 @@ public class LevelManager : MonoBehaviour
 
     private void Start()
     {
-        highestLevelUnlocked = PlayerPrefs.GetInt("HighestLevelUnlocked", 1);
+        highestLevelUnlocked = PlayerPrefs.GetInt("HighestLevelUnlocked", 50);
     }
 }
