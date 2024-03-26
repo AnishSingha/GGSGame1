@@ -5,12 +5,16 @@ using UnityEngine;
 public class BoostUp : MonoBehaviour
 {
     private bool isColliding;
-    public Rigidbody2D body;
+    private Rigidbody2D body;
     [SerializeField]protected float force;
     [SerializeField] float DelayBetweenForceShift;
     [SerializeField] bool willSwap;
-    
 
+
+    private void Awake()
+    {
+        body = FindAnyObjectByType<Rigidbody2D>();
+    }
     private void Start()
     {
         isColliding = false;
