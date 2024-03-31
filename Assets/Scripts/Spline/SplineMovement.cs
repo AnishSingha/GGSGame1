@@ -1,4 +1,3 @@
-
 using System;
 using UnityEngine;
 using UnityEngine.Splines;
@@ -10,7 +9,6 @@ public class SplineMovement : MonoBehaviour
     public bool loop = true;
     private int direction = 1;
 
-
     [Range(0, 1)]
     [SerializeField] public float t = 0.0f;
 
@@ -19,11 +17,11 @@ public class SplineMovement : MonoBehaviour
 
     private void Update()
     {
-        if (ResetMoves==true)
+        if (ResetMoves == true)
         {
             MoveWithSpline();
         }
-        if (MovesBack==true) 
+        if (MovesBack == true)
         {
             MoveBacknForthWithSpline();
         }
@@ -31,7 +29,6 @@ public class SplineMovement : MonoBehaviour
 
     private void MoveBacknForthWithSpline()
     {
-
         if (splineContainer != null && splineContainer.Splines.Count > 0)
         {
             t += speed * Time.deltaTime * direction;
@@ -47,12 +44,11 @@ public class SplineMovement : MonoBehaviour
                 direction = 1; // Change direction to go forwards
             }
 
-            if (splineContainer.Evaluate(t, out var position, out var tangent, out _))
+            if (splineContainer.Evaluate(t, out var position, out _, out _))
             {
-                transform.SetPositionAndRotation(position, Quaternion.LookRotation(tangent, Vector3.up));
+                transform.position = new Vector3(position.x, position.y, transform.position.z);
             }
         }
-
     }
 
     private void MoveWithSpline()
@@ -73,10 +69,9 @@ public class SplineMovement : MonoBehaviour
                 }
             }
 
-            if (splineContainer.Evaluate(t, out var position, out var tangent, out _))
+            if (splineContainer.Evaluate(t, out var position, out _, out _))
             {
-
-                transform.SetPositionAndRotation(position, Quaternion.LookRotation(tangent, Vector3.up));
+                transform.position = new Vector3(position.x, position.y, transform.position.z);
             }
         }
     }
