@@ -6,31 +6,26 @@ using UnityEngine.SceneManagement;
 
 public class EndPoint : LevelManager
 {
-  
+    private RewardOptions options;
+    public PopupUI popupUI;
+    public PlayerUIDisplayEvent playerUIDisplayEvent;
 
-    public LevelCompleteUI levelCompleteUI;
-   
+
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("Player"))
         {
-           
-            levelCompleteUI.OnLevelCompleted();
+
+            playerUIDisplayEvent.Die();
             other.gameObject.SetActive(false);
             LevelManager.LevelCompleted(SceneManager.GetActiveScene().buildIndex);
 
-            int coinCount = PlayerPrefs.GetInt("Coins");
-            coinCount += Random.Range(0, 10);
-
-            PlayerPrefs.SetInt("Coins", coinCount);
-            PlayerPrefs.Save();
-
-            Debug.Log(PlayerPrefs.GetInt("Coins"));
-            
+            options.CoinReward();
         }
-              
+
     }
-    
+
   
+
 
 }

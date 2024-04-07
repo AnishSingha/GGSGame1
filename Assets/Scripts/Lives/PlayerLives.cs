@@ -8,9 +8,8 @@ namespace PlayerHealth
     {
         public static PlayerLives instance;
 
-        private LevelCompleteUI levelCompleteUI;
         
-        public int maxDeathsBeforeLoseLife = 3; // The number of deaths before the player loses a life
+
 
         private void Awake()
         {
@@ -22,10 +21,7 @@ namespace PlayerHealth
             Debug.Log(PlayerPrefs.GetInt("totalLives"));
         }
 
-        private void OnEnable()
-        {
-            levelCompleteUI = FindObjectOfType<LevelCompleteUI>();
-        }
+       
 
         private static void NullCheck()
         {
@@ -48,34 +44,25 @@ namespace PlayerHealth
             }
         }
 
-        private int currentDeaths = 0; // The current number of deaths
+        
 
         public void PlayerDied()
         {
-            int totalLives = PlayerPrefs.GetInt("totalLives"); 
-          
-            currentDeaths++;
-           // Debug.Log(currentDeaths);
+            int totalLives = PlayerPrefs.GetInt("totalLives");
 
-            if (currentDeaths >= maxDeathsBeforeLoseLife)
+
+            PlayerPrefs.SetInt("totalLives", totalLives - 1);
+            PlayerPrefs.Save();
+
+            if (totalLives <= 0)
             {
-                currentDeaths = 0;
+                Debug.Log("Game Over");
 
-                //Display Restart Level UI
-                levelCompleteUI.OnLevelCompleted();
-
-                PlayerPrefs.SetInt("totalLives", totalLives - 1);
-                PlayerPrefs.Save();
-
-                if (totalLives <= 0)
-                {
-                    Debug.Log("Game Over");
-                    
-                }
             }
+
         }
 
-        IEnumerator RechargeLives()
+        /*IEnumerator RechargeLives()
         {
             yield return new WaitForSeconds(5); // Wait for 5 minutes
 
@@ -92,9 +79,8 @@ namespace PlayerHealth
             // Call the coroutine again to wait for the next recharge
             StartCoroutine(RechargeLives());
             
-        }
+        }*/
 
 
     }
 }
- 

@@ -13,10 +13,13 @@ public class LevelCompleteUI : MonoBehaviour
     public Button previousLevelButton;
     public Button restartLevelButton;
 
-  
+    private void Awake()
+    {
+        InstanceCreation();
+    }
     private void Start()
     {
-        gameObject.SetActive(false);
+        
 
         nextLevelButton.onClick.AddListener(LevelManager.LoadNextLevel);
         previousLevelButton.onClick.AddListener(LevelManager.LoadPreviousLevel);
@@ -25,13 +28,26 @@ public class LevelCompleteUI : MonoBehaviour
 
     public void OnLevelCompleted()
     {
-        gameObject.SetActive(true);
+        
 
         nextLevelButton.interactable = (SceneManager.GetActiveScene().buildIndex < LevelManager.highestLevelUnlocked);
 
         previousLevelButton.interactable = (SceneManager.GetActiveScene().buildIndex >= 1);
     }
 
+    private void InstanceCreation()
+    {
+        if (instance == null)
+        {
+            instance = this;
+            DontDestroyOnLoad(this.gameObject);
+        }
+        else
+        {
+            Destroy(this.gameObject);
+        }
+    }
 
-   
+
+
 }

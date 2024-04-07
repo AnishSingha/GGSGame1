@@ -8,10 +8,14 @@ namespace PlayerHealth
     {
 
         private PlayerLives playerLives;
+        public PlayerUIDisplayEvent playerUIDisplayEvent1;
+
         private void Start()
         {
             playerLives = FindObjectOfType<PlayerLives>();
         }
+
+
         private void OnTriggerEnter2D(Collider2D other)
         {
             if (other.CompareTag("Player"))
@@ -21,9 +25,16 @@ namespace PlayerHealth
 
                 other.gameObject.SetActive(false);
                 playerLives.PlayerDied();
-                SceneManager.LoadScene(currentLevel);
+                DIsplayUI(playerUIDisplayEvent1);
+               // SceneManager.LoadScene(currentLevel);
                 Debug.Log(PlayerPrefs.GetInt("totalLives"));
             }
+        }
+
+
+        public void DIsplayUI(PlayerUIDisplayEvent playerUIDisplayEvent)
+        {
+            playerUIDisplayEvent.Die();
         }
     }
 }
