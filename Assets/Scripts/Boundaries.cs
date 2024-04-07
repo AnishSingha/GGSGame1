@@ -1,8 +1,9 @@
 ﻿using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace PlayerHealth
 {
-    
+
     public class Boundaries : BoundaryAbstract
     {
 
@@ -15,11 +16,12 @@ namespace PlayerHealth
         {
             if (other.CompareTag("Player"))
             {
-               
-                
+
+                int currentLevel = SceneManager.GetActiveScene().buildIndex;
+
                 other.gameObject.SetActive(false);
                 playerLives.PlayerDied();
-                LevelManager.RestartLevel();
+                SceneManager.LoadScene(currentLevel);
                 Debug.Log(PlayerPrefs.GetInt("totalLives"));
             }
         }

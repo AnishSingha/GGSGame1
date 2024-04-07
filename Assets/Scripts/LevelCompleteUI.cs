@@ -2,12 +2,18 @@
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
+
+
 public class LevelCompleteUI : MonoBehaviour
 {
+    public static LevelCompleteUI instance;
+
+
     public Button nextLevelButton;
     public Button previousLevelButton;
     public Button restartLevelButton;
 
+  
     private void Start()
     {
         gameObject.SetActive(false);
@@ -25,4 +31,7 @@ public class LevelCompleteUI : MonoBehaviour
 
         previousLevelButton.interactable = (SceneManager.GetActiveScene().buildIndex >= 1);
     }
+
+
+   
 }

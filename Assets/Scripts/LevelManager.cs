@@ -1,10 +1,12 @@
 ﻿using UnityEngine;
 using System;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class LevelManager : MonoBehaviour
 {
-   
+
+
     public static int highestLevelUnlocked = 50;
 
     public static void LevelCompleted(int level)
@@ -17,7 +19,7 @@ public class LevelManager : MonoBehaviour
         PlayerPrefs.SetInt("HighestLevelUnlocked", highestLevelUnlocked);
     }
 
-    public static void LoadLevel(int level)
+    public static void LoadLevel(int level, bool deductLife = true)
     {
         if (level <= highestLevelUnlocked)
         {
@@ -27,18 +29,27 @@ public class LevelManager : MonoBehaviour
         {
             Debug.Log("Level " + level + " is not yet unlocked!");
         }
+
+        if (deductLife)
+        {
+            int totalLives = PlayerPrefs.GetInt("totalLives");
+            PlayerPrefs.SetInt("totalLives", totalLives - 1);
+        }
     }
 
     public static void LoadNextLevel()
     {
         int currentLevel = SceneManager.GetActiveScene().buildIndex;
         LoadLevel(currentLevel + 1);
+
     }
 
     public static void RestartLevel()
     {
         int currentLevel = SceneManager.GetActiveScene().buildIndex;
-        LoadLevel(currentLevel);
+        LoadLevel(currentLevel, false);
+
+
     }
 
     public static void LoadPreviousLevel()
@@ -58,4 +69,6 @@ public class LevelManager : MonoBehaviour
     {
         highestLevelUnlocked = PlayerPrefs.GetInt("HighestLevelUnlocked", 50);
     }
+
+   
 }

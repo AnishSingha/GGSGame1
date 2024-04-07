@@ -4,8 +4,9 @@ using UnityEngine;
 
 public class BoostUp : MonoBehaviour
 {
-    private bool isColliding;
-    private Rigidbody2D body;
+    private bool _isColliding;
+    private Rigidbody2D _body;
+
     [SerializeField]protected float force;
     [SerializeField] float DelayBetweenForceShift;
     [SerializeField] bool willSwap;
@@ -13,11 +14,12 @@ public class BoostUp : MonoBehaviour
 
     private void Awake()
     {
-        body = FindAnyObjectByType<Rigidbody2D>();
+        _body = FindAnyObjectByType<Rigidbody2D>();
     }
+    
     private void Start()
     {
-        isColliding = false;
+        _isColliding = false;
 
         if (willSwap == true)
         {
@@ -33,9 +35,9 @@ public class BoostUp : MonoBehaviour
 
     private void Push()
     {
-        if (isColliding == true)
+        if (_isColliding == true)
         {
-            body.AddForce(transform.up * force);
+            _body.AddForce(transform.up * force);
         }
         else
         {
@@ -52,7 +54,7 @@ public class BoostUp : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            isColliding = true;
+            _isColliding = true;
 
         }
     }
@@ -66,7 +68,7 @@ public class BoostUp : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            isColliding = false;
+            _isColliding = false;
         }
     }
 

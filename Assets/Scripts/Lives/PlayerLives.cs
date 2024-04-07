@@ -8,12 +8,35 @@ namespace PlayerHealth
     {
         public static PlayerLives instance;
 
-
+        private LevelCompleteUI levelCompleteUI;
+        
         public int maxDeathsBeforeLoseLife = 3; // The number of deaths before the player loses a life
 
         private void Awake()
         {
+            InstanceCreation();
+            NullCheck();
 
+            //StartCoroutine(RechargeLives());
+           
+            Debug.Log(PlayerPrefs.GetInt("totalLives"));
+        }
+
+        private void OnEnable()
+        {
+            levelCompleteUI = FindObjectOfType<LevelCompleteUI>();
+        }
+
+        private static void NullCheck()
+        {
+            if (!PlayerPrefs.HasKey("totalLives"))
+            {
+                PlayerPrefs.SetInt("totalLives", 5);
+            }
+        }
+
+        private void InstanceCreation()
+        {
             if (instance == null)
             {
                 instance = this;
@@ -23,16 +46,6 @@ namespace PlayerHealth
             {
                 Destroy(this.gameObject);
             }
-
-            if (!PlayerPrefs.HasKey("totalLives"))
-            {
-                PlayerPrefs.SetInt("totalLives", 5);
-            }
-
-            //StartCoroutine(RechargeLives());
-
-
-            Debug.Log(PlayerPrefs.GetInt("totalLives"));
         }
 
         private int currentDeaths = 0; // The current number of deaths
@@ -40,23 +53,19 @@ namespace PlayerHealth
         public void PlayerDied()
         {
             int totalLives = PlayerPrefs.GetInt("totalLives"); 
-
-            
+          
             currentDeaths++;
            // Debug.Log(currentDeaths);
 
-
-
             if (currentDeaths >= maxDeathsBeforeLoseLife)
             {
-                // Reset the death count
                 currentDeaths = 0;
-               // Debug.Log(currentDeaths);
-                
-                
+
+                //Display Restart Level UI
+                levelCompleteUI.OnLevelCompleted();
+
                 PlayerPrefs.SetInt("totalLives", totalLives - 1);
                 PlayerPrefs.Save();
-
 
                 if (totalLives <= 0)
                 {
@@ -65,10 +74,6 @@ namespace PlayerHealth
                 }
             }
         }
-
-
-
-
 
         IEnumerator RechargeLives()
         {
