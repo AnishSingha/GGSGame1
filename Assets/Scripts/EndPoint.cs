@@ -4,9 +4,8 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 
-public class EndPoint : LevelManager
+public class EndPoint : LevelManager, IRewardOptions
 {
-    private RewardOptions options;
     public PopupUI popupUI;
     public PlayerUIDisplayEvent playerUIDisplayEvent;
 
@@ -20,11 +19,24 @@ public class EndPoint : LevelManager
             other.gameObject.SetActive(false);
             LevelManager.LevelCompleted(SceneManager.GetActiveScene().buildIndex);
 
-            options.CoinReward();
+            AnyReward();
         }
 
     }
 
+
+    //Rewarding Coins On Level Completion
+    public void AnyReward()
+    {
+
+        int coinCount = PlayerPrefs.GetInt("Coins");
+        coinCount += Random.Range(1, 10);
+
+        PlayerPrefs.SetInt("Coins", coinCount);
+        PlayerPrefs.Save();
+
+        Debug.Log(PlayerPrefs.GetInt("Coins"));
+    }
   
 
 

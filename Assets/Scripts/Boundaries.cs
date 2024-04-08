@@ -4,7 +4,7 @@ using UnityEngine.SceneManagement;
 namespace PlayerHealth
 {
 
-    public class Boundaries : BoundaryAbstract
+    public class Boundaries : MonoBehaviour
     {
 
         private PlayerLives playerLives;
