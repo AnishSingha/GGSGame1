@@ -2,8 +2,8 @@
 
 public class KeyLoader : MonoBehaviour
 {
-    public GameObject keyPrefab; // The prefab for the key
-    public Vector3 keySpawnPosition = new Vector3(0, 1, 0); // The position where the key will spawn
+    [SerializeField] GameObject keyPrefab; // The prefab for the key
+    [SerializeField] Vector2 keySpawnPosition = new Vector2(0, 1); // The position where the key will spawn
 
     void Start()
     {
