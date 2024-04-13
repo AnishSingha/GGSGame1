@@ -8,9 +8,7 @@ namespace PlayerHealth
     {
         public static PlayerLives instance;
 
-        
-
-
+ 
         private void Awake()
         {
             InstanceCreation();
@@ -46,7 +44,7 @@ namespace PlayerHealth
 
         
 
-        public void PlayerDied()
+        public void ReduceHealth()
         {
             int totalLives = PlayerPrefs.GetInt("totalLives");
 
