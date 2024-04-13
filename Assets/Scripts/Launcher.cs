@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
@@ -8,7 +9,9 @@ public class Launcher : MonoBehaviour
    
     private Move move;
     private Rigidbody2D rb;
-    public Transform launchPoint;
+    [SerializeField] Animator animator;
+
+    public GameObject platform;
 
     private void Awake()
     {
@@ -16,17 +19,25 @@ public class Launcher : MonoBehaviour
         rb = FindAnyObjectByType<Rigidbody2D>();
         
     }
+
     private void OnMouseClick()
     {
         if (Input.GetMouseButtonUp(0))
         {
-            
-            move.enabled = true;
-            rb.gravityScale = 1;
-            this.enabled = false;
-            
+            animator.SetTrigger("JumpStart");
+            StartCoroutine(DelayBeforeJump());
+
+            platform.transform.parent = null;
 
         }   
+    }
+
+    private IEnumerator DelayBeforeJump()
+    {
+        yield return new WaitForSeconds(0.5f);
+        move.enabled = true;
+        rb.gravityScale = 1;
+        this.enabled = false;
     }
 
     void Update()

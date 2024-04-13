@@ -9,9 +9,10 @@ using Newtonsoft.Json;
 
 public class EndPoint : LevelManager
 {
-    public PopupUI popupUI;
-    public PlayerUIDisplayEvent playerUIDisplayEvent;
+    [SerializeField] PlayerUIDisplayEvent playerUIDisplayEvent;
     [SerializeField] CoinManager coinManager;
+
+
     private const string coinCountKey = "CoinCount";
 
     private async void OnTriggerEnter2D(Collider2D other)

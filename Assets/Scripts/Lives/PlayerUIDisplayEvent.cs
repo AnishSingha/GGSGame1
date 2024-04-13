@@ -24,5 +24,6 @@ public class PlayerUIDisplayEvent : MonoBehaviour
     public void Die()
     {
         OnPlayerDeathorWin?.Invoke();
+
     }
 }
