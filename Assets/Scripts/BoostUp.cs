@@ -10,7 +10,7 @@ public class BoostUp : MonoBehaviour
     [SerializeField]protected float force;
     [SerializeField] float DelayBetweenForceShift;
     [SerializeField] bool willSwap;
-
+    [SerializeField] Animator animator;
 
     private void Awake()
     {
@@ -38,6 +38,7 @@ public class BoostUp : MonoBehaviour
         if (_isColliding == true)
         {
             _body.AddForce(transform.up * force);
+            animator.SetTrigger("push");
         }
         else
         {

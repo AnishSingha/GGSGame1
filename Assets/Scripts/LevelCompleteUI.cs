@@ -6,17 +6,13 @@ using UnityEngine.SceneManagement;
 
 public class LevelCompleteUI : MonoBehaviour
 {
-    public static LevelCompleteUI instance;
 
 
     public Button nextLevelButton;
     public Button previousLevelButton;
     public Button restartLevelButton;
 
-    private void Awake()
-    {
-        InstanceCreation();
-    }
+   
     private void Start()
     {
         
@@ -24,9 +20,14 @@ public class LevelCompleteUI : MonoBehaviour
         nextLevelButton.onClick.AddListener(LevelManager.LoadNextLevel);
         previousLevelButton.onClick.AddListener(LevelManager.LoadPreviousLevel);
         restartLevelButton.onClick.AddListener(LevelManager.RestartLevel);
+
+        if (SceneManager.GetActiveScene().buildIndex == 1)
+        {
+            previousLevelButton.interactable = false;
+        }
     }
 
-    public void OnLevelCompleted()
+    /*public void OnLevelCompleted()
     {
         
 
@@ -34,19 +35,8 @@ public class LevelCompleteUI : MonoBehaviour
 
         previousLevelButton.interactable = (SceneManager.GetActiveScene().buildIndex >= 1);
     }
-
-    private void InstanceCreation()
-    {
-        if (instance == null)
-        {
-            instance = this;
-            DontDestroyOnLoad(this.gameObject);
-        }
-        else
-        {
-            Destroy(this.gameObject);
-        }
-    }
+*/
+   
 
 
 
