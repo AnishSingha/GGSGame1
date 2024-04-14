@@ -8,11 +8,12 @@ namespace PlayerHealth
     {
 
         private PlayerLives playerLives;
-        [SerializeField] PlayerUIDisplayEvent playerUIDisplayEvent1;
+        private PlayerUIDisplayEvent playerUIDisplayEvent1;
         
         private void Start()
         {
             playerLives = FindObjectOfType<PlayerLives>();
+            playerUIDisplayEvent1 = FindAnyObjectByType<PlayerUIDisplayEvent>();
         }
 
 
