@@ -9,10 +9,6 @@ namespace PlayerHealth
         public static PlayerLives instance;
         
 
-        [Tooltip("Setup the range for giving players stars based on number of moves")]
-        [SerializeField] protected int tripleStar = 3;
-        [SerializeField] protected int doubleStar = 5;
-        [SerializeField] protected int singleStar = 7;
 
         private void Awake()
         {
