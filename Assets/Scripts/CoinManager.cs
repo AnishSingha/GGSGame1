@@ -9,8 +9,5 @@ public class CoinManager : MonoBehaviour
         totalCoins += coins;
     }
 
-    public int GetCurrentCoins()
-    {
-        return totalCoins;
-    }
+   
 }

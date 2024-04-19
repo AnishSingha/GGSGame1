@@ -7,8 +7,13 @@ namespace PlayerHealth
     public class PlayerLives : MonoBehaviour
     {
         public static PlayerLives instance;
+        
 
- 
+        [Tooltip("Setup the range for giving players stars based on number of moves")]
+        [SerializeField] protected int tripleStar = 3;
+        [SerializeField] protected int doubleStar = 5;
+        [SerializeField] protected int singleStar = 7;
+
         private void Awake()
         {
             InstanceCreation();
@@ -27,6 +32,7 @@ namespace PlayerHealth
             {
                 PlayerPrefs.SetInt("totalLives", 5);
             }
+          
         }
 
         private void InstanceCreation()
@@ -46,18 +52,11 @@ namespace PlayerHealth
 
         public void ReduceHealth()
         {
-            int totalLives = PlayerPrefs.GetInt("totalLives");
-
-
-            PlayerPrefs.SetInt("totalLives", totalLives - 1);
+            int deathcount = PlayerPrefs.GetInt("deathCount");
+            PlayerPrefs.SetInt("deathCount", deathcount + 1);
             PlayerPrefs.Save();
 
-            if (totalLives <= 0)
-            {
-                Debug.Log("Game Over");
-
-            }
-
+            Debug.Log(PlayerPrefs.GetInt("deathCount"));
         }
 
         /*IEnumerator RechargeLives()

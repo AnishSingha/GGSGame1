@@ -8,12 +8,12 @@ namespace PlayerHealth
     {
 
         private PlayerLives playerLives;
-        private PlayerUIDisplayEvent playerUIDisplayEvent1;
+        
         
         private void Start()
         {
             playerLives = FindObjectOfType<PlayerLives>();
-            playerUIDisplayEvent1 = FindAnyObjectByType<PlayerUIDisplayEvent>();
+           
         }
 
 
@@ -22,18 +22,15 @@ namespace PlayerHealth
             if (other.CompareTag("Player"))
             {
 
-
+                int currentlevel = SceneManager.GetActiveScene().buildIndex;
                 other.gameObject.SetActive(false);
                 playerLives.ReduceHealth();
-                DIsplayUI(playerUIDisplayEvent1);
+                SceneManager.LoadScene(currentlevel);
                 Debug.Log(PlayerPrefs.GetInt("totalLives"));
             }
         }
 
 
-        public void DIsplayUI(PlayerUIDisplayEvent playerUIDisplayEvent)
-        {
-            playerUIDisplayEvent.Die();
-        }
+        
     }
 }
