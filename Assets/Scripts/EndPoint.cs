@@ -16,8 +16,8 @@ public class EndPoint : LevelManager
     {
         playerUIDisplayEvent = FindAnyObjectByType<PlayerUIDisplayEvent>();
         coinManager = FindAnyObjectByType<CoinManager>();
-
     }
+
     private const string coinCountKey = "CoinCount";
 
     private async void OnTriggerEnter2D(Collider2D other)
@@ -33,7 +33,6 @@ public class EndPoint : LevelManager
         }
 
     }
-
 
     private async Task AwardCoinsAsync()
     {
@@ -72,7 +71,5 @@ public class EndPoint : LevelManager
         var data = new Dictionary<string, object> { { coinCountKey, coinCount } };
         await CloudSaveService.Instance.Data.Player.SaveAsync(data);
     }
-
-
 
 }

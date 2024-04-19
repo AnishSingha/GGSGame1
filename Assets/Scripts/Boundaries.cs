@@ -22,12 +22,10 @@ namespace PlayerHealth
             if (other.CompareTag("Player"))
             {
 
-                int currentLevel = SceneManager.GetActiveScene().buildIndex;
 
                 other.gameObject.SetActive(false);
                 playerLives.ReduceHealth();
                 DIsplayUI(playerUIDisplayEvent1);
-               // SceneManager.LoadScene(currentLevel);
                 Debug.Log(PlayerPrefs.GetInt("totalLives"));
             }
         }
