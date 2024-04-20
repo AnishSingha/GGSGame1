@@ -14,15 +14,18 @@ public class EndPoint : LevelManager
 
 
     [Tooltip("Setup the range for giving players stars based on number of moves")]
-    [SerializeField] protected int tripleStar = 3;
-    [SerializeField] protected int doubleStar = 5;
-    [SerializeField] protected int singleStar = 7;
+    [SerializeField]  int tripleStar = 3;
+    [SerializeField]  int doubleStar = 5;
+    [SerializeField]  int singleStar = 7;
+
+    private int starsCollectedThisAttempt = 0;
 
 
     private void Start()
     {
         playerUIDisplayEvent = FindAnyObjectByType<PlayerUIDisplayEvent>();
         coinManager = FindAnyObjectByType<CoinManager>();
+
     }
 
 
@@ -35,6 +38,8 @@ public class EndPoint : LevelManager
             playerUIDisplayEvent.Die();
             other.gameObject.SetActive(false);
             LevelManager.LevelCompleted(SceneManager.GetActiveScene().buildIndex);
+
+            starsCollectedThisAttempt = 0;
 
             await AwardCoinsAsync();
             await AwardStarAsync();
@@ -99,10 +104,12 @@ public class EndPoint : LevelManager
         int currentStars = await GetStarCountAsync();
 
         int starsToAward = CheckRewardStats();
+        int starsToAdd = starsToAward - starsCollectedThisAttempt;
 
-        currentStars += starsToAward;
+        currentStars += starsToAdd;
+        starsCollectedThisAttempt = starsToAward;
 
-        AddStars(starsToAward);
+        AddStars(starsToAdd);
 
         await SaveStarCountAsync(currentStars);
 
@@ -144,23 +151,32 @@ public class EndPoint : LevelManager
     {
         int deathcount = PlayerPrefs.GetInt("deathCount");
 
-        if (deathcount <= tripleStar)
+        if (deathcount <=3)
         {
-            return 3;
+            if (deathcount <= tripleStar)
+            {
+
+                return 3;
+
+            }
+            if (deathcount > tripleStar && deathcount <= doubleStar)
+            {
+                return 2;
+            }
+            if (deathcount >= doubleStar && deathcount <= singleStar)
+            {
+                return 1;
+            }
+            if (deathcount > singleStar)
+            {
+                return 0;
+            }
+           
         }
-        if (deathcount > tripleStar && deathcount <= doubleStar)
-        {
-            return 2;
-        }
-        if (deathcount >= doubleStar && deathcount <= singleStar)
-        {
-            return 1;
-        }
-        if (deathcount > singleStar)
-        {
-            return 0;
-        }
+        
         return 0;
+        
+       
     }
 
     #endregion
